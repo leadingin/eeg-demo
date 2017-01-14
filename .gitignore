@@ -7,3 +7,4 @@ node_modules
 **/static/css/**/*
 **/static/vendor/**/*
 **/static/js/**/*
+eeg.egg-info/
