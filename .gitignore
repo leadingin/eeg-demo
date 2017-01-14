@@ -1,0 +1,9 @@
+.DS_Store
+.venv/
+__pycache__
+*.pyc
+eeg.db
+node_modules
+**/static/css/**/*
+**/static/vendor/**/*
+**/static/js/**/*

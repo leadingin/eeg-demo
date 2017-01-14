@@ -1,0 +1,54 @@
+<h1>Welcome to EEG!</h1>
+
+<div class="metanav">
+    {% if not session.logged_in %}
+        <a href="{{ url_for('login') }}">Log In</a>
+    {% else %}
+        <a href="{{ url_for('logout') }}">Log Out</a>
+    {% endif %}
+</div>
+
+{% for message in get_flashed_messages() %}
+    <div class="flash">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% extends 'layout.html' %}
+{% block body %}
+    <h2>Login</h2>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    <form class="login" action="{{ url_for('login') }}" method="post">
+        <dl>
+            <dt>Username:</dt>
+            <dd><input type="text" name="username"></dd>
+            <dt>Password:</dt>
+            <dd><input type="PASSWORD" name="password"></dd>
+            <dd><input type="submit" value="Login"></dd>
+        </dl>
+    </form>
+{% endblock %}
+
+{% extends 'layout.html' %}
+{% block body %}
+    {% if session.logged_in %}
+        <form class="add_entry" action="{{ url_for('add_entry') }}" method="post">
+            <dl>
+                <dt>Output:</dt>
+                <dd><input type="text" name="output" size=30></dd>
+                <dt>Emotion:</dt>
+                <dd><input type="text" name="emotion" size=30></dd>
+                <dd><input type="submit" value="Add"></dd>
+            </dl>
+        </form>
+    {% endif %}
+    <ul class="entries">
+        {% for entry in entries %}
+            <li><strong>{{ entry.output }}:</strong> {{ entry.emotion | safe }}</li>
+        {% else %}
+            <li><em>Unbelievable. No entries here so far.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
