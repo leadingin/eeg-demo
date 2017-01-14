@@ -41,6 +41,12 @@ $ sh build.sh
 $ flask run
 ```
 
+### Current Routes
+
+* /
+* /login
+* /api/dataset/
+
 --
 
 > The University of Texas at San Antonio
