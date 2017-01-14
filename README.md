@@ -50,5 +50,7 @@ $ flask run
 --
 
 > The University of Texas at San Antonio
+>
 > Department of Electrical Engineering
+>
 > Fall 2016 - Spring 2017 Senior Design
