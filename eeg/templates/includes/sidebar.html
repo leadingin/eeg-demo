@@ -1,21 +1,20 @@
-<div class="sidebar">
 
-  <div
+<div class="sidebar">
+  <a href="/results"
     {% if active == "live-data" %}
       class="tab live-data active"
     {% else %}
       class="tab live-data"
     {% endif %}>
     live data
-  </div>
+  </a>
 
-  <div
+  <a href="/history"
     {% if active == "history" %}
       class="tab history active"
     {% else %}
       class="tab history"
     {% endif %}>
     history
-  </div>
-
+  </a>
 </div>

@@ -1,0 +1,32 @@
+//* Typography
+$roboto-font-stack: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+@mixin font-smoothing {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+//* Mixins
+.tab-bar {
+  border-bottom: 1px solid rgba($color-blue-light, 0.2);
+  text-align: right;
+  .tab-group {
+    display: inline-block;
+    padding: $padding-box*1.5;
+  }
+  .tab {
+    color: $color-text-watermark;
+    text-transform: capitalize;
+    padding: $padding-box*1.5;
+    margin-left: $padding-box;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid rgba($color-text-watermark, 0.2);
+    border-bottom: none;
+    &.active {
+      border-color: rgba($color-blue-light, 0.2);
+      background-color: rgba($color-blue-light, 0.4);
+      color: $color-text;
+      font-weight: 500;
+    }
+  }
+}

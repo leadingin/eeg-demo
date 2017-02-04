@@ -1,6 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+//* Base Files
+@import "_font";
+@import "_variables";
+@import "_helpers";
+@import "page";
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: white;
-}
+//* Page Overrides
+@import "pages/history.page";
+@import "pages/live-data.page";
+
+//* Subtab Overrides
+@import "pages/subtab/process.subtab";
+@import "pages/subtab/results.subtab";

@@ -1,0 +1,21 @@
+<div class="tab-bar">
+  <div class="tab-group">
+    <a href="/results"
+      {% if subtab == "results" %}
+        class="tab results active"
+      {% else %}
+        class="tab results"
+      {% endif %}>
+      results
+    </a>
+
+    <a href="/process"
+      {% if subtab == "process" %}
+        class="tab process active"
+      {% else %}
+        class="tab process"
+      {% endif %}>
+      process
+    </a>
+  </div>
+</div>

@@ -10,10 +10,15 @@
         <div class="page">
             {% include "/includes/header.html" %}
             {% include "/includes/sidebar.html" %}
-            {% block body %}{% endblock %}
+
+            <div class="page-content">
+              {% block body %}{% endblock %}
+            </div>
+
         </div>
 
         <script src="{{ url_for('static', filename='vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/d3/d3.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     </body>
 </html>

@@ -1,11 +1,15 @@
 {% extends 'layouts/layout.html' %}
 
 {% block body %}
-    <h1>Main</h1>
+  <div class="live-data">
+
+    <h1 class="title">Live Data</h1>
     {% if subtab == "results" %}
       {% include "/includes/results.html" %}
     {% else %}
       {% include "/includes/process.html" %}
     {% endif %}
+
+  </div>
 
 {% endblock %}
