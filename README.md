@@ -10,6 +10,7 @@ Install the following, if your computer doesn't have it currently:
 * Python3 v3.5.x
 * Node v6.9.x
 * SQLite3 v3.14.x
+* Bower v1.8.x
 
 ```bash
 $ pip3 install virtualenv
