@@ -1,3 +1,21 @@
 <div class="sidebar">
-  sidebar
+
+  <div
+    {% if active == "live-data" %}
+      class="tab live-data active"
+    {% else %}
+      class="tab live-data"
+    {% endif %}>
+    live data
+  </div>
+
+  <div
+    {% if active == "history" %}
+      class="tab history active"
+    {% else %}
+      class="tab history"
+    {% endif %}>
+    history
+  </div>
+
 </div>

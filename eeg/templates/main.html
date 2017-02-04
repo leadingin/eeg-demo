@@ -2,5 +2,10 @@
 
 {% block body %}
     <h1>Main</h1>
-    {% include "/includes/results.html" %}
+    {% if subtab == "results" %}
+      {% include "/includes/results.html" %}
+    {% else %}
+      {% include "/includes/process.html" %}
+    {% endif %}
+
 {% endblock %}
