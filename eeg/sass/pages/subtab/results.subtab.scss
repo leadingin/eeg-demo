@@ -1,20 +1,6 @@
-.results-plot div {
-	font: 10px sans-serif;
-	background-color: $color-blue-light;
-	text-align: right;
-	padding: 3px;
-	margin: 1px;
-	color: $color-text;
-
-	.bar {
-	  fill: steelblue;
-	}
-
-	.bar:hover {
-	  fill: brown;
-	}
-
-	.axis--x path {
-	  display: none;
+.results {
+	.card {
+		margin-top: $padding-box;
+		height: 84vh;
 	}
 }

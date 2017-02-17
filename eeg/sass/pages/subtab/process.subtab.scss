@@ -1,0 +1,49 @@
+.process {
+
+  .process-grid {
+    .row {
+      position: relative;
+      margin-top: $padding-box;
+    }
+
+    .row-1 {
+      height: 20vh;
+
+      .col-1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 84%;
+      }
+
+      .col-2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 15%;
+      }
+    }
+
+    .row-2 {
+      height: 64vh;
+
+      .col-1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 40%;
+      }
+
+      .col-2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 59%;
+      }
+    }
+  }
+}

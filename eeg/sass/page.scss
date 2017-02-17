@@ -3,8 +3,8 @@ body {
     @include font-smoothing;
     font-size: $font-size-start;
     font-weight: 400;
-    color: $color-text-watermark;
-    background-color: $color-black;
+    color: $color-text;
+    background-color: $color-bluegreen-darker;
     cursor: default;
 
     * {
@@ -19,7 +19,7 @@ body {
 // Page CSS settings for web app
 .page {
   .header {
-    background-color: $color-black-dark;
+    background-color: $color-bluegreen-darkest;
     height: $navbar-height;
     position: absolute;
     top: 0;
@@ -29,7 +29,7 @@ body {
     .logo {
       float: left;
       height: $navbar-height;
-      color: $color-red;
+      color: $color-orange;
       font-weight: 500;
       font-size: 2em;
       padding: 5px;
@@ -48,34 +48,24 @@ body {
     position: absolute;
     top: $navbar-height;
     left: 0;
-    background-color: $color-black-darker;
-    height: 100vh;
+    background-color: $color-bluegreen-darkest;
+    height: 94vh;
     width: $sidebar-width;
     padding: 20px 0;
     .tab {
       text-transform: capitalize;
       padding: $padding-box;
-      background-color: $color-black-darker;
+      background-color: $color-bluegreen-darkest;
       transition: all 200ms;
       position: relative;
       display: block;
-      color: $color-text-watermark;
+      color: $color-text;
       &:hover,
       &.active {
-        background-color: darken($color-red, 0.2);
+        background-color: $color-bluegreen-darker;
         color: $color-text;
         font-weight: 500;
-        &::after {
-          content: "";
-          display: block;
-          width: $padding-box;
-          height: $padding-box;
-          background-color: darken($color-red, 0.2);
-          position: absolute;
-          top: $padding-box + 4px;
-          right: -5px;
-          transform: rotate(45deg);
-        }
+        border-left: 2px solid $color-orange;
       }
     }
   }

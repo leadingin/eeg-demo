@@ -1,0 +1,18 @@
+click==6.7
+DateTime==4.1.1
+-e git+https://github.com/m-amaya/eeg-demo.git@3bc27156e4cc74a947ec23d9f5c0d7f330224b2b#egg=eeg
+enum-compat==0.0.2
+eventlet==0.20.1
+Flask==0.12
+Flask-SocketIO==2.8.2
+greenlet==0.4.12
+itsdangerous==0.24
+Jinja2==2.9.4
+MarkupSafe==0.23
+numpy==1.12.0
+python-engineio==1.2.1
+python-socketio==1.6.3
+pytz==2016.10
+six==1.10.0
+Werkzeug==0.11.15
+zope.interface==4.3.3
