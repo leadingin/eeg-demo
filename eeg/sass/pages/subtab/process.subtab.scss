@@ -15,6 +15,30 @@
         left: 0;
         height: 100%;
         width: 84%;
+
+        .rawline {
+    			height: 95%;
+    			width: 100%;
+
+    			// Trying to change legend text color
+    			.nv-legend {
+    				color: pink;
+    				fill: pink;
+    			}
+
+    			.nv-axis {
+    				fill: $color-text;
+            .tick {
+              opacity: 0;
+            }
+            opacity: 0;
+    			}
+
+    			.dashed {
+    					stroke-dasharray: 5,5;
+    			}
+
+        }
       }
 
       .col-2 {

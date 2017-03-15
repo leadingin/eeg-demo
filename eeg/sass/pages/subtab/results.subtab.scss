@@ -2,5 +2,34 @@
 	.card {
 		margin-top: $padding-box;
 		height: 84vh;
+
+		.lineChart {
+			height: 95%;
+			width: 100%;
+
+			.nvd3 {
+				text {
+					font-family: $roboto-font-stack;
+					fill: $color-text;
+					font-size: 1.1em;
+				}
+				.nv-axis line {
+					stroke-opacity: 0;
+				}
+				.nv-axis path.domain,
+				.nv-axis.nv-x path.domain {
+					stroke: rgba($color-text, 0.8);
+					stroke-opacity: 1;
+				}
+			}
+			// .nv-axis {
+			// 	fill: $color-text;
+			// 	// .tick {
+			// 	// 	fill: pink;
+			// 	// 	opacity: 0;
+			// 	// }
+			// 	opacity: 0;
+			// }
+		}
 	}
 }

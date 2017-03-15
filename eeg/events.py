@@ -8,10 +8,6 @@ import sys
 from .app import socketio
 from eeg.middleware.util import background_listener
 
-#
-# path = ''
-# process_list = []
-# threads = []
 namespace = '/eeg'
 eeg_path = './pyscripts/test.py'
 
