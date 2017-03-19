@@ -8,3 +8,4 @@ node_modules
 **/static/vendor/**/*
 **/static/js/**/*
 eeg.egg-info/
+npm-debug.log

@@ -1,5 +1,27 @@
-{% extends 'layouts/layout.html' %}
-
-{% block body %}
-    <h1>Welcome to EEG!</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en" ng-app="eeg-app">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>EEG Demo</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/normalize-css/normalize.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/nvd3/build/nv.d3.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}" />
+        <script src="{{ url_for('static', filename='vendor/socket.io-client/dist/socket.io.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/jQuery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angular/angular.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angular-ui-router/release/angular-ui-router.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angular-cookies/angular-cookies.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angular-animate/angular-animate.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/ng-lodash/build/ng-lodash.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/d3/d3.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/nvd3/build/nv.d3.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angular-nvd3/dist/angular-nvd3.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/app.bundle.js') }}"></script>
+    </head>
+    <body>
+        <ui-view></ui-view>
+    </body>
+</html>
