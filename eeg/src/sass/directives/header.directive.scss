@@ -1,0 +1,23 @@
+.ng-header {
+  background: $color-bluegreen-darkest;
+  width: 100%;
+  height: $navbar-height;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  .logo-wrapper {
+    padding: $padding-box;
+    display: inline-block;
+  }
+  .logo {
+    height: $navbar-height - $padding-box*2;
+  }
+
+  .company-wrapper {
+    position: absolute;
+    right: $padding-box;
+    bottom: $padding-box;
+  }
+}
