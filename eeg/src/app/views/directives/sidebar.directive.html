@@ -1,8 +1,10 @@
 <div class="ng-sidebar">
-  <a class="tab active">
+  <a class="tab" ui-sref="home.livedata.results"
+    ng-class="{active: includes('home.livedata')}">
     Live Data
   </a>
-  <a class="tab">
+  <a class="tab" ui-sref="home.history"
+    ng-class="{active: includes('home.history')}">
     History
   </a>
 </div>

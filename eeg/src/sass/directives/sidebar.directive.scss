@@ -6,10 +6,12 @@
   height: 100%;
   width: $sidebar-width;
   padding-top: $navbar-height + $padding-box;
+  z-index: 2;
 
   .tab {
     display: block;
     padding: $padding-box $padding-box+$padding-text;
+    color: $color-text;
 
     &.active {
       background-color: $color-bluegreen-darker;

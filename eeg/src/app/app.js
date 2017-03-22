@@ -17,9 +17,12 @@ angular
 
   // controllers
   .controller("HomeController", [
+    "StateFactory",
     require("./controllers/home.controller")
   ])
   .controller("LivedataController", [
+    "$state",
+    "StateFactory",
     require("./controllers/livedata.controller")
   ])
   .controller("LivedataResultsController", [
@@ -29,6 +32,8 @@ angular
     require("./controllers/livedata-process.controller")
   ])
   .controller("HistoryController", [
+    "$state",
+    "StateFactory",
     require("./controllers/history.controller")
   ])
 
@@ -43,6 +48,7 @@ angular
     require("./directives/scatter-chart.directive")
   ])
   .directive("ngSidebar", [
+    "$state",
     require("./directives/sidebar.directive")
   ])
   .directive("ngStemChart", [
@@ -57,6 +63,7 @@ angular
     require("./factories/api.factory")
   ])
   .factory("StateFactory", [
+    "$rootScope",
     require("./factories/state.factory")
   ])
   .factory("SocketFactory", [
