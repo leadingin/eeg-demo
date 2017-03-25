@@ -21,9 +21,10 @@ def main():
     fullsum = np.sum(fullbuff, axis=0)  # collapse buffer channels to 1
 
     f_buffer.write('{\n\"buffer\":[')
+    f_buffer.write(str(fullsum[0]))
     for n in fullsum:
-        f_buffer.write(str(n))
         f_buffer.write(',')
+        f_buffer.write(str(n))
     f_buffer.write(']\n}')
 
     f_psd.write('{\n\"psd\":[')

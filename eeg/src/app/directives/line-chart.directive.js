@@ -1,8 +1,10 @@
-module.exports = function() {
+module.exports = function(SocketFactory, $http) {
   return {
     restrict: "E",
     replace: true,
-    scope: {},
+    scope: {
+      filename: "@"
+    },
     template: require("../views/directives/line-chart.directive.html"),
     link: function(scope, el, attrs) {
       scope.options = {
@@ -67,6 +69,32 @@ module.exports = function() {
       };
 
       scope.data = sinAndCos();
+
+      if(scope.filename === "buffer") {
+        // Catch Data
+        SocketFactory.on('script:done', function(message) {
+          console.log("in event 'script:done'...");
+          if(message.status === "done") {
+            console.log("... fetching buffer_r.json");
+            $http.get('/static/data/buffer_r.json') // GET request to url (same as viewing in browser)
+              .then(
+                function(res) {
+                  console.log("... retrieved JSON:", res.data);
+                  console.log("done.");
+                  //SocketFactory.emit('script:run'); // comment to just once
+                },
+                function(err) {
+                  console.log(err);
+                }); // Wait to fetch THEN success or error
+            //SocketFactory.emit('script:run');
+          }
+        });
+
+      }
+
+      if(scope.filename === "psd") {
+
+      }
     }
   }
 }

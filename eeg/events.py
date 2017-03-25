@@ -16,10 +16,9 @@ def test_conn(message):
     emit('test:ui', 'received message: ' + message)
 
 @socketio.on('script:run', namespace=namespace)
-def run_script():
-    # output = [1,2,3] # Dummy data
-    # emit('data',
-    #     {'data': output, 'status':'running'}) # JSON format
+def run_script(a):
+    print(a)
+
     p = Popen(
         ['python', eeg_path],
         stdout=PIPE,

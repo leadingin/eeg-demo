@@ -18,6 +18,7 @@ angular
   // controllers
   .controller("HomeController", [
     "StateFactory",
+    "SocketFactory",
     require("./controllers/home.controller")
   ])
   .controller("LivedataController", [
@@ -42,6 +43,8 @@ angular
     require("./directives/header.directive")
   ])
   .directive("ngLineChart", [
+    "SocketFactory",
+    "$http",
     require("./directives/line-chart.directive")
   ])
   .directive("ngScatterChart", [
@@ -67,5 +70,6 @@ angular
     require("./factories/state.factory")
   ])
   .factory("SocketFactory", [
+    "$rootScope",
     require("./factories/socket.factory")
   ])
