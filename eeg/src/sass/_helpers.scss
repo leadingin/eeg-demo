@@ -11,3 +11,14 @@ $roboto-font-stack: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-seri
   height: 100%;
   padding: $padding-box;
 }
+
+.card {
+  background: $color-bluegreen-lighter;
+  padding: $padding-box;
+  border-radius: 2px;
+
+  .card-title {
+    font-weight: 300;
+    font-size: 1.2em;
+  }
+}
