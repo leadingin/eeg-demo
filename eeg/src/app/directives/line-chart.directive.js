@@ -20,9 +20,9 @@ module.exports = function(SocketFactory, $http) {
             x: function(d){ return d.x; },
             y: function(d){ return d.y; },
             useInteractiveGuideline: true,
-            // xAxis: {
-            //     axisLabel: 'Time (ms)'
-            // },
+            xAxis: {
+                axisLabel: 'Time (s)'
+            }//,
             // yAxis: {
             //     axisLabel: 'Voltage (v)',
             //     tickFormat: function(d){
@@ -34,41 +34,47 @@ module.exports = function(SocketFactory, $http) {
       }
 
       /*Random Data Generator */
-      function sinAndCos() {
-          var sin = [],sin2 = [],
-              cos = [];
-
+      function getGraph(Data) {
+          var eeg = [],
+              emotion = []
+              ;
+          console.log("Data:", Data);
           //Data is represented as an array of {x,y} pairs.
-          for (var i = 0; i < 100; i++) {
-              sin.push({x: i, y: Math.sin(i/10)});
-              sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-              cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
+          for (var i = 0; i <= 300; i++) { // 1921
+              var j = i%30;
+              var randomI;
+
+              if(j == 0) {
+                randomI = Math.round(Math.random() * 2);
+                emotion.push({x: i/10, y: randomI})
+              }
+              else {
+                emotion.push({x: i/10, y: randomI})
+              }
+              eeg.push({x: i/10, y: Math.random() + .5})
           }
+
 
           //Line chart data should be sent as an array of series objects.
           return [
               {
-                  values: sin,      //values - represents the array of {x,y} data points
-                  key: 'Sine Wave', //key  - the name of the series.
-                  color: '#ff7f0e',  //color - optional: choose your own line color.
-                  strokeWidth: 2,
-                  classed: 'dashed'
+                  values: eeg,       //values - represents the array of {x,y} data points
+                  key: "EEG Signal", //key  - the name of the series.
+                  color: "#F2F2F3"  //color - optional: choose your own line color.
               },
               {
-                  values: cos,
-                  key: 'Cosine Wave',
-                  color: '#2ca02c'
-              },
-              {
-                  values: sin2,
-                  key: 'Another sine wave',
-                  color: '#7777ff',
-                  area: true      //area - set to true if you want this line to turn into a filled area chart.
+                  values: emotion,
+                  key: "Emotional State",
+                  color: "#FDAE3D",
+                  strokeWidth: 3.5
               }
           ];
       };
 
-      scope.data = sinAndCos();
+      scope.data = getGraph(0);
+      // console.log("scope.data:", scope.data);
+      // console.log("scope.data[0] (eeg signal object):", scope.data[0]);
+      // console.log("scope.data[0].values (eeg signal):", scope.data[0].values);
 
       if(scope.filename === "buffer") {
         // Catch Data
@@ -79,7 +85,33 @@ module.exports = function(SocketFactory, $http) {
             $http.get('/static/data/buffer_r.json') // GET request to url (same as viewing in browser)
               .then(
                 function(res) {
-                  console.log("... retrieved JSON:", res.data);
+                  console.log("... retrieved JSON (y-format):", res.data);
+                  console.log("res:", res);
+                  console.log("res.data:", res.data);
+                  console.log("res.data.buffer:", res.data.buffer);
+                  console.log("res.data.buffer[0]:", res.data.buffer[0]);
+
+                  // var xy = [];
+                  // var x = 0, y;
+                  // for(y in res.data.buffer) {
+                  //   if(y % 4 == 0) {
+                  //     xy.push({x: x, y: res.data.buffer[y]})
+                  //     x = x+1;
+                  //   }
+                  // }
+                  // console.log("... x, y :", xy)
+                  //
+                  // scope.data = [
+                  //   {
+                  //       values: xy,       //values - represents the array of {x,y} data points
+                  //       key: "Blah", //key  - the name of the series.
+                  //       color: "#F2F2F3",  //color - optional: choose your own line color.
+                  //   }
+                  // ];
+
+                  console.log("Updated Values");
+
+                  //console.log("... x-fromat:", scope.data)
                   console.log("done.");
                   //SocketFactory.emit('script:run'); // comment to just once
                 },

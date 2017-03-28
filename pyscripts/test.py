@@ -2,6 +2,8 @@ import numpy as np
 from shutil import copyfile
 
 def main():
+    # f_buffer = open('../data/buffer.json', 'w')
+    # f_psd = open('../data/psd.json', 'w')
     f_buffer = open('./data/buffer.json', 'w')
     f_psd = open('./data/psd.json', 'w')
     fullbuff = np.random.uniform(0, 1, (8, 1920))  # create random full buffer
@@ -20,6 +22,7 @@ def main():
     fullbuff = np.random.uniform(0, 1, (8, 1920))  # create random full buffer
     fullsum = np.sum(fullbuff, axis=0)  # collapse buffer channels to 1
 
+    print("fullsum:", fullsum)
     f_buffer.write('{\n\"buffer\":[')
     f_buffer.write(str(fullsum[0]))
     for n in fullsum:
@@ -37,9 +40,11 @@ def main():
     f_buffer.close()
     f_psd.close()
 
-    copyfile('data/buffer.json', 'eeg/static/data/buffer_r.json')
-    copyfile('data/psd.json', 'eeg/static/data/psd_r.json')
+    # copyfile('../data/buffer.json', '../eeg/static/data/buffer_r.json')
+    # copyfile('../data/psd.json', '../eeg/static/data/psd_r.json')
 
+    copyfile('./data/buffer.json', 'eeg/static/data/buffer_r.json')
+    copyfile('./data/psd.json', 'eeg/static/data/psd_r.json')
     print("done writing copy")
 
 
