@@ -22,13 +22,14 @@ def main():
     fullbuff = np.random.uniform(0, 1, (8, 1920))  # create random full buffer
     fullsum = np.sum(fullbuff, axis=0)  # collapse buffer channels to 1
 
-    print("fullsum:", fullsum)
-    f_buffer.write('{\n\"buffer\":[')
-    f_buffer.write(str(fullsum[0]))
+    #print("fullsum:", fullsum)
+    #f_buffer.write('{\n\"buffer\":[')
+    #f_buffer.write(str(fullsum[0]))
     for n in fullsum:
-        f_buffer.write(',')
         f_buffer.write(str(n))
-    f_buffer.write(']\n}')
+        f_buffer.write(' ')
+    #f_buffer.write('End')
+    #f_buffer.write(']\n}')
 
     f_psd.write('{\n\"psd\":[')
     for a in psdx:

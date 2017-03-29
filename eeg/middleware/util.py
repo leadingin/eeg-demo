@@ -16,7 +16,33 @@ def background_listener(socketio, process, namespace):
         output = process.stdout.readline().strip()
         print('output: ' + output)
         if 'done writing copy' in output:
-            socketio.emit('script:done', {'status': 'done'}, namespace=namespace)
+            buff1 = { "blah": [1,2,3,4]}
+            buff2 = [1,2,3,4]
+            buff3 = []
+            with open('eeg/static/data/buffer_r.json') as buff:
+                data = buff.read()
+                #print('Data Received:' + data[0:10])
+                #numbers = data.split(" ")
+                buff3 = data.split(" ")
+                #print('Numbers:' + str(number))
+                # for line in data:
+                #     #print('line = ' + line)
+                #     number = line.split(" ")
+                #     print('n:' + str(number))
+                #     #buff3.extend(float(n))
+
+            del buff3[-1] # Remove last element from array - " "
+            #buff3 = float(buff3)
+            #print('buff3:' + str(buff3))
+
+            socketio.emit(
+            'script:done',
+            {
+                'status': 'done',
+                'data' : buff3
+            },
+            namespace=namespace
+            )
 
         process.poll()
         r = process.returncode

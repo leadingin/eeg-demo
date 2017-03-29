@@ -71,7 +71,7 @@ module.exports = function(SocketFactory, $http) {
           ];
       };
 
-      scope.data = getGraph(0);
+      // scope.data = getGraph(0);
       // console.log("scope.data:", scope.data);
       // console.log("scope.data[0] (eeg signal object):", scope.data[0]);
       // console.log("scope.data[0].values (eeg signal):", scope.data[0].values);
@@ -82,43 +82,49 @@ module.exports = function(SocketFactory, $http) {
           console.log("in event 'script:done'...");
           if(message.status === "done") {
             console.log("... fetching buffer_r.json");
-            $http.get('/static/data/buffer_r.json') // GET request to url (same as viewing in browser)
-              .then(
-                function(res) {
-                  console.log("... retrieved JSON (y-format):", res.data);
-                  console.log("res:", res);
-                  console.log("res.data:", res.data);
-                  console.log("res.data.buffer:", res.data.buffer);
-                  console.log("res.data.buffer[0]:", res.data.buffer[0]);
+            console.log(message);
+            console.log(message.data[0]);
 
-                  // var xy = [];
-                  // var x = 0, y;
-                  // for(y in res.data.buffer) {
-                  //   if(y % 4 == 0) {
-                  //     xy.push({x: x, y: res.data.buffer[y]})
-                  //     x = x+1;
-                  //   }
-                  // }
-                  // console.log("... x, y :", xy)
-                  //
-                  // scope.data = [
-                  //   {
-                  //       values: xy,       //values - represents the array of {x,y} data points
-                  //       key: "Blah", //key  - the name of the series.
-                  //       color: "#F2F2F3",  //color - optional: choose your own line color.
-                  //   }
-                  // ];
+            // Get Data from json buffer object
+            var xy = [];
+            var x = 0, y;
+            for(y in message.data) {
+              if(y % 4 == 0) {
+                xy.push({x: x, y: parseFloat(message.data[y])})
+                x = x+1;
+              }
+            }
+            console.log("... x, y :", xy)
 
-                  console.log("Updated Values");
+            scope.data = [
+              {
+                  values: xy,       //values - represents the array of {x,y} data points
+                  key: "Blah", //key  - the name of the series.
+                  color: "#F2F2F3",  //color - optional: choose your own line color.
+              }
+            ];
 
-                  //console.log("... x-fromat:", scope.data)
-                  console.log("done.");
-                  //SocketFactory.emit('script:run'); // comment to just once
-                },
-                function(err) {
-                  console.log(err);
-                }); // Wait to fetch THEN success or error
-            //SocketFactory.emit('script:run');
+            // $http.get('/static/data/buffer_r.json') // GET request to url (same as viewing in browser)
+            //   .then(
+            //     function(res) {
+            //       // console.log("... retrieved JSON (y-format):", res.data);
+            //       // console.log("res:", res);
+            //       // console.log("res.data:", res.data);
+            //       // console.log("res.data.buffer:", res.data.buffer);
+            //       // console.log("res.data.buffer[0]:", res.data.buffer[0]);
+            //
+
+            //
+            //       // console.log("Updated Values");
+            //
+            //       //console.log("... x-fromat:", scope.data)
+            //       console.log("done.");
+            //       //SocketFactory.emit('script:run'); // comment to just once
+            //     },
+            //     function(err) {
+            //       console.log(err);
+            //     }); // Wait to fetch THEN success or error
+            // SocketFactory.emit('script:run');
           }
         });
 
