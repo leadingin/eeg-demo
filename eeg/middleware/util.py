@@ -19,6 +19,7 @@ def background_listener(socketio, process, namespace):
             buff1 = { "blah": [1,2,3,4]}
             buff2 = [1,2,3,4]
             buff3 = []
+            buff4 = []
             with open('eeg/static/data/buffer_r.json') as buff:
                 data = buff.read()
                 #print('Data Received:' + data[0:10])
@@ -30,8 +31,13 @@ def background_listener(socketio, process, namespace):
                 #     number = line.split(" ")
                 #     print('n:' + str(number))
                 #     #buff3.extend(float(n))
-
             del buff3[-1] # Remove last element from array - " "
+
+            with open('data/buffer.json') as buff:
+                data = buff.read()
+                buff4 = data.split(" ")
+
+            del buff4[-1]
             #buff3 = float(buff3)
             #print('buff3:' + str(buff3))
 
@@ -39,7 +45,8 @@ def background_listener(socketio, process, namespace):
             'script:done',
             {
                 'status': 'done',
-                'data' : buff3
+                'data' : buff3,
+                'data1': buff4
             },
             namespace=namespace
             )

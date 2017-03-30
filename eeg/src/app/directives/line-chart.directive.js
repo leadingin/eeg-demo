@@ -3,7 +3,8 @@ module.exports = function(SocketFactory, $http) {
     restrict: "E",
     replace: true,
     scope: {
-      filename: "@"
+      filename: "@",
+      page: "@"
     },
     template: require("../views/directives/line-chart.directive.html"),
     link: function(scope, el, attrs) {
@@ -71,16 +72,21 @@ module.exports = function(SocketFactory, $http) {
           ];
       };
 
-      // scope.data = getGraph(0);
+      //  scope.data = getGraph(0);
       // console.log("scope.data:", scope.data);
       // console.log("scope.data[0] (eeg signal object):", scope.data[0]);
       // console.log("scope.data[0].values (eeg signal):", scope.data[0].values);
+
+      if(scope.page === "process") {
+          scope.options.chart.height = 150;
+      }
 
       if(scope.filename === "buffer") {
         // Catch Data
         SocketFactory.on('script:done', function(message) {
           console.log("in event 'script:done'...");
           if(message.status === "done") {
+            // if(message.page === "process") vs. "results" for data display
             console.log("... fetching buffer_r.json");
             console.log(message);
             console.log(message.data[0]);

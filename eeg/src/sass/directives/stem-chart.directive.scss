@@ -1,3 +1,18 @@
 .ng-stem-chart {
-  
+  .nvd3 {
+    text {
+        font-family: $roboto-font-stack;
+        fill: $color-text;
+    }
+
+    .nv-axis line {
+        stroke-opacity: 0;
+    }
+
+    .nv-axis path.domain,
+    .nv-axis.nv-x path.domain {
+        stroke: $color-text;
+        stroke-opacity: 1;
+    }
+  }
 }

@@ -59,4 +59,14 @@
     width: 100%;
     height: 100%;
   }
+
+  .mood-svg {
+    position: absolute;
+    bottom: $padding-box + 20px;
+    left: $padding-box;
+    right: $padding-box;
+    margin: auto;
+    width: 60%;
+  }
+
 }

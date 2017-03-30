@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3837 97.502 40.498 40.498">
+  <defs>
+    <style>
+      .cls-1, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_26" data-name="Group 26" transform="translate(2651 -186.498)">
+    <path id="Path_118" data-name="Path 118" class="cls-1" d="M20.249,1A19.249,19.249,0,1,1,1,20.249,19.249,19.249,0,0,1,20.249,1Z" transform="translate(1186 284)"/>
+    <path id="Path_119" data-name="Path 119" class="cls-2" d="M2.632,1A1.632,1.632,0,1,1,1,2.632,1.632,1.632,0,0,1,2.632,1Z" transform="translate(1195.719 296.554)"/>
+    <g id="Ellipse_395" data-name="Ellipse 395" class="cls-2" transform="translate(1211.513 296.554)">
+      <circle class="cls-4" cx="2.632" cy="2.632" r="2.632"/>
+      <circle class="cls-5" cx="2.632" cy="2.632" r="1.632"/>
+    </g>
+    <path id="Path_40" data-name="Path 40" class="cls-1" d="M2998.509,308.224a6.805,6.805,0,0,1,3.031-2.74,12.225,12.225,0,0,1,4.893-.514" transform="translate(-1805.823 -12.446)"/>
+    <path id="Path_41" data-name="Path 41" class="cls-1" d="M0,3.308A6.805,6.805,0,0,1,3.031.568,12.224,12.224,0,0,1,7.924.054" transform="matrix(0.799, 0.602, -0.602, 0.799, 1213.108, 290.419)"/>
+    <path id="Path_42" data-name="Path 42" class="cls-3" d="M1229.072,349.764s-.971-6.849-9.516-6.849-9.555,6.849-9.555,6.849Z" transform="translate(2425.791 658.624) rotate(180)"/>
+  </g>
+</svg>
