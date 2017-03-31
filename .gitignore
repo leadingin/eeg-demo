@@ -10,3 +10,4 @@ node_modules
 eeg.egg-info/
 npm-debug.log
 pyscripts/
+data/

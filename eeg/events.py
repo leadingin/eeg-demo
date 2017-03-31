@@ -9,8 +9,8 @@ from .app import socketio
 from eeg.middleware.util import background_listener
 
 namespace = '/eeg'
-eeg_path = './pyscripts/test.py'
-#eeg_path = './pyscripts/main.py'
+#eeg_path = './pyscripts/test.py'
+eeg_path = './pyscripts/main.py'
 
 @socketio.on('test:server', namespace=namespace)
 def test_conn(message):

@@ -85,30 +85,30 @@ module.exports = function(SocketFactory, $http) {
         // Catch Data
         SocketFactory.on('script:done', function(message) {
           console.log("in event 'script:done'...");
-          if(message.status === "done") {
+          if(message.status === "buffer-done") {
             // if(message.page === "process") vs. "results" for data display
             console.log("... fetching buffer_r.json");
             console.log(message);
-            console.log(message.data[0]);
+            // console.log(message.data[0]);
 
             // Get Data from json buffer object
-            var xy = [];
-            var x = 0, y;
-            for(y in message.data) {
-              if(y % 4 == 0) {
-                xy.push({x: x, y: parseFloat(message.data[y])})
-                x = x+1;
-              }
-            }
-            console.log("... x, y :", xy)
-
-            scope.data = [
-              {
-                  values: xy,       //values - represents the array of {x,y} data points
-                  key: "Blah", //key  - the name of the series.
-                  color: "#F2F2F3",  //color - optional: choose your own line color.
-              }
-            ];
+            // var xy = [];
+            // var x = 0, y;
+            // for(y in message.data) {
+            //   if(y % 4 == 0) {
+            //     xy.push({x: x, y: parseFloat(message.data[y])})
+            //     x = x+1;
+            //   }
+            // }
+            // console.log("... x, y :", xy)
+            //
+            // scope.data = [
+            //   {
+            //       values: xy,       //values - represents the array of {x,y} data points
+            //       key: "Blah", //key  - the name of the series.
+            //       color: "#F2F2F3",  //color - optional: choose your own line color.
+            //   }
+            // ];
 
             // $http.get('/static/data/buffer_r.json') // GET request to url (same as viewing in browser)
             //   .then(
