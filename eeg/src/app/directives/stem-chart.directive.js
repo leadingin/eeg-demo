@@ -34,10 +34,9 @@ module.exports = function() {
             }
         };
 
-        function getData() {
+        function getData2() {
           var psdsum = [],
-              band1 = [],
-              psd = [],
+              thetasum = [],
               randomF = 0.0;
 
           for(var i = 0; i < 60; i++) { // 256
@@ -56,7 +55,7 @@ module.exports = function() {
               }
             );
           }
-          // psdsum.push({ key: "psd", values: psd})
+
           return [
             {
               key: "psdsum",
@@ -65,48 +64,62 @@ module.exports = function() {
           ];
         }
 
-        scope.data = getData();
-        // [
-        //     {
-        //         key: "Cumulative Return",
-        //         values: [
-        //             {
-        //                 "label" : "A" ,
-        //                 "value" : -29.765957771107
-        //             } ,
-        //             {
-        //                 "label" : "B" ,
-        //                 "value" : 0
-        //             } ,
-        //             {
-        //                 "label" : "C" ,
-        //                 "value" : 32.807804682612
-        //             } ,
-        //             {
-        //                 "label" : "D" ,
-        //                 "value" : 196.45946739256
-        //             } ,
-        //             {
-        //                 "label" : "E" ,
-        //                 "value" : 0.19434030906893
-        //             } ,
-        //             {
-        //                 "label" : "F" ,
-        //                 "value" : -98.079782601442
-        //             } ,
-        //             {
-        //                 "label" : "G" ,
-        //                 "value" : -13.925743130903
-        //             } ,
-        //             {
-        //                 "label" : "H" ,
-        //                 "value" : -5.1387322875705
-        //             }
-        //         ]
-        //     }
-        // ]
+        function getData() {
+          var psdsum = [],
+              thetasum = [],
+              randomF = 0.0;
 
-        console.log("scope.data:", scope.data);
+          for(var i = 0; i < 60; i++) { // 256
+            if(i % 2 == 0) {
+              randomF = Math.random();
+            }
+            else {
+              randomF = 0;
+            }
+
+            psdsum.push(
+              {
+                label: i,
+                value: randomF,
+                color: "#F2F2F3"
+              }
+            );
+            thetasum.push(
+              {
+                label: i,
+                value: randomF,
+                color: "#F2F2F3"
+              }
+            );
+          }
+
+          return [
+            {
+              key: "psdsum",
+              values: psdsum
+            },
+            {
+              key: "thetasum",
+              values: thetasum
+            }
+          ];
+        }
+
+        //if(scope.get)
+        var initGraph = getData();
+
+        // scope.data = getData();
+        // console.log('Init Graph:', initGraph);
+        // console.log('Data:', initGraph[0]);
+        // scope.data = initGraph[0];
+        if(scope.filename == "psd") {
+          scope.data = [initGraph[0]]; // Sytax issue
+          console.log('Scope.data1:', scope.data);
+        }
+        if(scope.filename == "theta") {
+          scope.data = [initGraph[1]];
+          console.log('Scope.data2:', scope.data);
+        }
     }
   }
 }
