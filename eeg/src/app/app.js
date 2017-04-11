@@ -30,6 +30,7 @@ angular
     require("./controllers/livedata-results.controller")
   ])
   .controller("LivedataProcessController", [
+    "StateFactory",
     require("./controllers/livedata-process.controller")
   ])
   .controller("HistoryController", [
@@ -43,6 +44,7 @@ angular
     require("./directives/header.directive")
   ])
   .directive("ngLineChart", [
+    "StateFactory",
     "SocketFactory",
     "$http",
     require("./directives/line-chart.directive")

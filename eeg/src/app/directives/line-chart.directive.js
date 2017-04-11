@@ -1,4 +1,4 @@
-module.exports = function(SocketFactory, $http) {
+module.exports = function(StateFactory, SocketFactory, $http) {
   return {
     restrict: "E",
     replace: true,
@@ -118,6 +118,19 @@ module.exports = function(SocketFactory, $http) {
           else {
             updateGraph(message.data);
           }
+          // Get current mood from data
+          // var mood = emotion
+          var emotion = null;
+          var mood = Math.round(Math.random() * 2);
+
+          switch(mood) {
+            case 0: emotion = "happy";     break;
+            case 1: emotion = "sad";       break;
+            case 2: emotion = "neutral";   break;
+            default: emotion = "neutral";
+          }
+
+          StateFactory.update({output: emotion}); //happy sad neutral
         });
 
       }

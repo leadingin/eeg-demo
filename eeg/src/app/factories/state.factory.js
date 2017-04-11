@@ -1,6 +1,7 @@
 module.exports = function($rootScope) {
   var state = {
-    currentRoute: ""
+    currentRoute: "",
+    output: null
   }
 
   return {
@@ -19,5 +20,6 @@ module.exports = function($rootScope) {
         cb(e, state);
       })
     }
+
   }
 }

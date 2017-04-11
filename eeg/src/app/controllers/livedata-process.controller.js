@@ -1,3 +1,9 @@
-module.exports = function() {
-  var vm = this
+module.exports = function(StateFactory) {
+  var vm = this;
+  vm.mood = 'neutral';
+
+  StateFactory.onUpdate(function( e, state) {
+    // console.log("State:", state);
+    vm.mood = state.output;
+  });
 }

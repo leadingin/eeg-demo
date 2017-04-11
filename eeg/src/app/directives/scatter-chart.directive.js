@@ -104,8 +104,19 @@ module.exports = function() {
               type: "line",
               values: data[4],       //values - represents the array of {x,y} data points
               key: "Classification Boundary", //key  - the name of the series.
-              color: "#F2F2F3",  //color - optional: choose your own line color.
-              yAxis: 2 
+              color: "#1FCD4C",  //color - optional: choose your own line color.
+              strokeWidth: 2.5,
+              yAxis: 2
+          },
+          {
+              type: "line",
+              values: [
+                    {x: 0, y: 3}, {x: 6, y: 8}, {x: 7, y: 5},
+                    {x: 6, y: 3}, {x: 2.5,y: 1}
+                      ],       //values - represents the array of {x,y} data points
+              key: "blah", //key  - the name of the series.
+              color: "#FDAE3D",  //color - optional: choose your own line color.
+              yAxis: 2
           }
         ];
 
@@ -165,9 +176,13 @@ module.exports = function() {
         }
 
         curve = [
-            {x: 0, y: 3}, {x: 3.5, y: 4.5}, {x: 4.5, y: 4},
-            {x: 4, y: 3}, {x: 2.5,y: 1}
+            {x: 0, y: 3.4}, {x: 3.5, y: 5}, {x: 4.2, y: 4},
+            {x: 3.8, y: 3}, {x: 2.7,y: 1}
           ]
+        // [
+        //     {x: 0, y: 3}, {x: 3.5, y: 4.5}, {x: 4.5, y: 4},
+        //     {x: 4, y: 3}, {x: 2.5,y: 1}
+        //   ]
         return [ refLine1, refLine2, scatter1, scatter2, curve ];
       }
     }

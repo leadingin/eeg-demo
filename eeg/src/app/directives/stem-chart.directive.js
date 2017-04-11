@@ -24,9 +24,14 @@ module.exports = function() {
                 //     return d3.format(',.4f')(d);
                 // },
                 // duration: 500,
-                // xAxis: {
-                //     axisLabel: 'Frequency'
-                // },
+                xAxis: {
+                    axisLabel: 'Frequency',
+                    tickFormat: function(d) {
+                      if(d % 5 == 0) {
+                        return d;
+                      }
+                    }
+                }//,
                 // yAxis: {
                 //     axisLabel: 'Power',
                 //     axisLabelDistance: -10
