@@ -23,14 +23,14 @@ module.exports = function(StateFactory, SocketFactory, $http) {
             useInteractiveGuideline: true,
             xAxis: {
                 axisLabel: 'Time (s)'
-            }//,
-            // yAxis: {
-            //     axisLabel: 'Voltage (v)',
-            //     tickFormat: function(d){
-            //         return d3.format('.02f')(d);
-            //     },
-            //     axisLabelDistance: -10
-            // },
+            },
+            yAxis: {
+                // axisLabel: 'Mood',
+                tickFormat: function(d){
+                    return d3.format('d')(d);
+                },
+                axisLabelDistance: -10
+            },
         }
       }
 
@@ -74,24 +74,27 @@ module.exports = function(StateFactory, SocketFactory, $http) {
       };
 
       /* Update Graphs */
-      function updateGraph(data) {
+      function updateGraph(mood, eeg_stream) {
           var eeg = [], emotion = [];
           var y = 0, index = 0;
+          // console.log("Update Graph Data:", mood, eeg_stream);
+          // console.log("eeg-stream[2]:", eeg_stream[2]);
 
           for (var i = 0; i <= 450; i++) { // 1921. 15 seconds
               var j = i%30;
 
               if(j == 0) {
-                y = data[index];
+                y = mood[index];
                 index = index + 1;
                 emotion.push({x: i/30, y: y})
               }
               else {
                 emotion.push({x: i/30, y: y})
               }
-              eeg.push({x: i/30, y: Math.random() + .5})
+              // eeg.push({x: i/30, y: Math.random() + .5})
+              eeg.push({x: i/30, y: eeg_stream[i*4]})
+
           }
-          // console.log("... x, y :", xy)
           scope.data[0].values = eeg;
           scope.data[1].values = emotion;
       };
@@ -109,24 +112,26 @@ module.exports = function(StateFactory, SocketFactory, $http) {
       if(scope.filename === "buffer") {
         // Catch Data
         SocketFactory.on('script:done', function(message) {
-          console.log("in event 'script:done'...");
-          console.log('Message:', message);
-          //updateGraph(message.data);
-          if(message.page === "process") {//vs. "results" for data display
-            updateGraph(message.data);
+          // console.log("in event 'script:done'...");
+          // console.log('Buffer Update Message:', message);
+
+          var emotion = null;
+          var mood = 0; //Math.round(Math.random() * 2);
+
+          if(message.page === "process") {
+            updateGraph(message.data, message.raw);
           }
           else {
-            updateGraph(message.data);
+            updateGraph(message.data, message.raw);
           }
-          // Get current mood from data
-          // var mood = emotion
-          var emotion = null;
-          var mood = Math.round(Math.random() * 2);
+
+          // Get current mood from data (last value in data array)
+          mood = message.data[message.data.length-1];
 
           switch(mood) {
-            case 0: emotion = "happy";     break;
-            case 1: emotion = "sad";       break;
-            case 2: emotion = "neutral";   break;
+            case 0: emotion = "sad";     break;
+            case 1: emotion = "neutral"; break;
+            case 2: emotion = "happy";   break;
             default: emotion = "neutral";
           }
 

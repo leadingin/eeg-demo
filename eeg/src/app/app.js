@@ -57,6 +57,7 @@ angular
     require("./directives/sidebar.directive")
   ])
   .directive("ngStemChart", [
+    "SocketFactory",
     require("./directives/stem-chart.directive")
   ])
   .directive("ngTabBar", [

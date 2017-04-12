@@ -10,12 +10,12 @@ module.exports = function() {
                type: 'multiChart',
                height: 500,
                margin : {
-                   top: 60, //30
+                   top: 60, //60
                    right: 60,
                    bottom: 50,
                    left: 70
                },
-               color: d3.scale.category10().range(),
+              //  color: d3.scale.category10().range(),
                //useInteractiveGuideline: true,
                duration: 500,
                xAxis: {
@@ -55,33 +55,33 @@ module.exports = function() {
            }
        };
 
-       console.log('Generate Machine Learning Visual!');
+      //  console.log('Generate Machine Learning Visual!');
 
        scope.data = generateVisual();
 
        function generateVisual(){
          var data = generateData();
-         console.log("Data:", data);
+        //  console.log("Data:", data);
 
         var testdata = [
-          {
-              type: "scatter",
-              values: data[0],//refLine1,       //values - represents the array of {x,y} data points
-              key: "StressLine", //key  - the name of the series.
-              color: "#C135AA",  //color - optional: choose your own line color.
-              size: Math.random(),
-              shape: 'circle',
-              yAxis: 1
-          },
-          {
-              type: "scatter",
-              values: data[1],//refLine2,
-              key: "CalmLine",
-              color: "#33B8CE",
-              size: Math.random(),
-              shape: 'circle',
-              yAxis: 1
-          },
+          // {
+          //     type: "scatter",
+          //     values: data[0],//refLine1,       //values - represents the array of {x,y} data points
+          //     key: "StressLine", //key  - the name of the series.
+          //     color: "#C135AA",  //color - optional: choose your own line color.
+          //     size: Math.random(),
+          //     shape: 'circle',
+          //     yAxis: 1
+          // },
+          // {
+          //     type: "scatter",
+          //     values: data[1],//refLine2,
+          //     key: "CalmLine",
+          //     color: "#33B8CE",
+          //     size: Math.random(),
+          //     shape: 'circle',
+          //     yAxis: 1
+          // },
           {
              type: "scatter",
               values: data[2],//scatter1,       //values - represents the array of {x,y} data points
@@ -102,29 +102,53 @@ module.exports = function() {
           },
           {
               type: "line",
-              values: data[4],       //values - represents the array of {x,y} data points
+              values: data[6],       //values - represents the array of {x,y} data points
               key: "Classification Boundary", //key  - the name of the series.
               color: "#1FCD4C",  //color - optional: choose your own line color.
-              strokeWidth: 2.5,
+              strokeWidth: 2,
               yAxis: 2
           },
+
           {
               type: "line",
               values: [
-                    {x: 0, y: 3}, {x: 6, y: 8}, {x: 7, y: 5},
-                    {x: 6, y: 3}, {x: 2.5,y: 1}
+                    {x: 1.75, y: 5}, {x: 6, y: 9}, {x: 8, y: 5}, {x: 5,y: 1.5}
                       ],       //values - represents the array of {x,y} data points
-              key: "blah", //key  - the name of the series.
+              key: "Classification Boundary",//"Classification Boundary", //key  - the name of the series.
               color: "#FDAE3D",  //color - optional: choose your own line color.
               yAxis: 2
-          }
+          }//,
+
+          // Circle Plot Test
+          // {
+          //     type: "line",
+          //     values: data[4],
+          //     key: "blah4", //key  - the name of the series.
+          //     color: "#FFFFFF",  //color - optional: choose your own line color.
+          //     yAxis: 2
+          // },
+          // {
+          //     type: "line",
+          //     values: data[5],
+          //     key: "blah5", //key  - the name of the series.
+          //     color: "#FFFFFF",  //color - optional: choose your own line color.
+          //     yAxis: 2
+          // },
+          // {
+          //     type: "line",
+          //     values: data[6],
+          //     key: "blah6", //key  - the name of the series.
+          //     color: "#000000",  //color - optional: choose your own line color.
+          //     yAxis: 2
+          // }
         ];
 
          return testdata;
       }
 
       function generateData(){
-        var scatter1 = [], scatter2 = [], curve = [], refLine1 = [], refLine2 = [];
+        var scatter1 = [], scatter2 = [], curve1 = [], curve2 = [],
+            curve3 = [],refLine1 = [], refLine2 = [], degree = 0;
 
         for(var i = 0; i <= 80; i++){
           // Get points for Stress Line y = x {x: 0-5}
@@ -135,6 +159,32 @@ module.exports = function() {
             if(i >= 20) {
               refLine2.push({x: i/10, y: -i/10 + 10});
             }
+
+            if( i >= 15 && i < 35 ) {
+              //curve.push({x: 180*Math.sin(i/10)/(Math.PI*10), y: 180*Math.cos(i/10)/(Math.PI*10)}) // in radians
+              curve1.push({x: 180*Math.sin(i/10)/(Math.PI*10), y: 180*Math.cos(i/10)/(Math.PI*10)}); // in radians *20
+              degree = Math.PI/3;
+              curve2.push(
+                {
+                  x: curve1[i-15].x*Math.cos(degree) - curve1[i-15].y*Math.sin(degree), // PI/3
+                  y: curve1[i-15].x*Math.sin(degree) - curve1[i-15].y*Math.cos(degree)
+                });
+            }
+        }
+        // console.log('curve:', curve2);
+        // console.log('curve length:', curve2.length);
+
+        for(var k = 0; k < curve2.length; k++) {
+          // curve3.push({x: curve2[k].x, y: curve2[k].y})
+          degree = Math.PI/6;
+          curve3.push(
+            {
+              // x: curve2[k].x*Math.cos(degree) - curve2[k].y*Math.sin(degree), // PI/3
+              // y: curve2[k].x*Math.sin(degree) - curve2[k].y*Math.cos(degree)
+              x: curve2[k].x - 0.4, // PI/3
+              y: curve2[k].y + 0.2
+            });
+
         }
 
         // Add Deviation to lines to create cluster plot
@@ -174,16 +224,7 @@ module.exports = function() {
               y: refLine2[pos2].y + devy2
             });
         }
-
-        curve = [
-            {x: 0, y: 3.4}, {x: 3.5, y: 5}, {x: 4.2, y: 4},
-            {x: 3.8, y: 3}, {x: 2.7,y: 1}
-          ]
-        // [
-        //     {x: 0, y: 3}, {x: 3.5, y: 4.5}, {x: 4.5, y: 4},
-        //     {x: 4, y: 3}, {x: 2.5,y: 1}
-        //   ]
-        return [ refLine1, refLine2, scatter1, scatter2, curve ];
+        return [ refLine1, refLine2, scatter1, scatter2, curve1, curve2, curve3 ];
       }
     }
   }

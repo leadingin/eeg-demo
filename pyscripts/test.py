@@ -6,7 +6,7 @@ def main():
     # f_psd = open('../data/psd.json', 'w')
     f_buffer = open('./data/buffer.json', 'w')
     f_psd = open('./data/psd.json', 'w')
-    fullbuff = np.random.uniform(0, 1, (8, 1920))  # create random full buffer
+    fullbuff = np.random.uniform(-1, 1, (8, 1920))  # create random full buffer
     fullsum = np.sum(fullbuff, axis=0)  # collapse buffer channels to 1
 
     # For testing
