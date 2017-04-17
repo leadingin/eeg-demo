@@ -114,28 +114,38 @@ module.exports = function(StateFactory, SocketFactory, $http) {
         SocketFactory.on('script:done', function(message) {
           // console.log("in event 'script:done'...");
           // console.log('Buffer Update Message:', message);
-
-          var emotion = null;
-          var mood = 0; //Math.round(Math.random() * 2);
-
-          if(message.page === "process") {
-            updateGraph(message.data, message.raw);
-          }
-          else {
-            updateGraph(message.data, message.raw);
+          if(message.status === "start") {
+            console.log('starting script...');
+            // console.log(message);
+            SocketFactory.emit('script:run-test'); // Start testScript
+            // SocketFactory.emit('script:run-live'); // Start liveScript
           }
 
-          // Get current mood from data (last value in data array)
-          mood = message.data[message.data.length-1];
+          if(message.status === "run") {
+            var emotion = null;
+            var mood = 0; //Math.round(Math.random() * 2);
 
-          switch(mood) {
-            case 0: emotion = "sad";     break;
-            case 1: emotion = "neutral"; break;
-            case 2: emotion = "happy";   break;
-            default: emotion = "neutral";
+            if(message.page === "process") {
+              updateGraph(message.data, message.raw);
+            }
+            else {
+              updateGraph(message.data, message.raw);
+            }
+
+            // Get current mood from data (last value in data array)
+            mood = message.data[message.data.length-1];
+
+            switch(mood) {
+              case 0: emotion = "sad";     break;
+              case 1: emotion = "neutral"; break;
+              case 2: emotion = "happy";   break;
+              default: emotion = "neutral";
+            }
+
+            StateFactory.update({output: emotion}); //happy sad neutral
+            SocketFactory.emit('script:run-test'); // Start testScript
+            // SocketFactory.emit('script:run-live'); // Start liveScript
           }
-
-          StateFactory.update({output: emotion}); //happy sad neutral
         });
 
       }

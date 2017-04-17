@@ -10,12 +10,11 @@ module.exports = function() {
                type: 'multiChart',
                height: 500,
                margin : {
-                   top: 60, //60
+                   top: 60, 
                    right: 60,
                    bottom: 50,
                    left: 70
                },
-              //  color: d3.scale.category10().range(),
                //useInteractiveGuideline: true,
                duration: 500,
                xAxis: {
@@ -47,15 +46,9 @@ module.exports = function() {
                    tickFormat: function(d){
                        return d3.format(',.1f')(d);
                    }
-               }//,
-              //  xDomain: [$scope.xminvalue,$scope.xmaxvalue],
-              //  xRange: null,
-              //  yDomain: null,
-              //  yRange: null,
+               }
            }
        };
-
-      //  console.log('Generate Machine Learning Visual!');
 
        scope.data = generateVisual();
 
@@ -63,6 +56,7 @@ module.exports = function() {
          var data = generateData();
         //  console.log("Data:", data);
 
+        // Visualize data you need
         var testdata = [
           // {
           //     type: "scatter",
@@ -108,12 +102,11 @@ module.exports = function() {
               strokeWidth: 2,
               yAxis: 2
           },
-
           {
               type: "line",
               values: [
                     {x: 1.75, y: 5}, {x: 6, y: 9}, {x: 8, y: 5}, {x: 5,y: 1.5}
-                      ],       //values - represents the array of {x,y} data points
+                      ],
               key: "Classification Boundary",//"Classification Boundary", //key  - the name of the series.
               color: "#FDAE3D",  //color - optional: choose your own line color.
               yAxis: 2
@@ -151,43 +144,39 @@ module.exports = function() {
             curve3 = [],refLine1 = [], refLine2 = [], degree = 0;
 
         for(var i = 0; i <= 80; i++){
-          // Get points for Stress Line y = x {x: 0-5}
+            // Get points for Stress Line y = x {x: 0-5}
             if(i <= 50) {
                 refLine1.push({x: i/10, y: i/10});
             }
-          // Get points for Calm Line y = 10 - x {x: 2-8}
+            // Get points for Calm Line y = 10 - x {x: 2-8}
             if(i >= 20) {
               refLine2.push({x: i/10, y: -i/10 + 10});
             }
 
+            // Only draw a piece of an ellipse
             if( i >= 15 && i < 35 ) {
-              //curve.push({x: 180*Math.sin(i/10)/(Math.PI*10), y: 180*Math.cos(i/10)/(Math.PI*10)}) // in radians
+              // Draw an ellipse
               curve1.push({x: 180*Math.sin(i/10)/(Math.PI*10), y: 180*Math.cos(i/10)/(Math.PI*10)}); // in radians *20
+
+              // Rotate ellipse 60 degrees
               degree = Math.PI/3;
-              curve2.push(
-                {
+              curve2.push({
                   x: curve1[i-15].x*Math.cos(degree) - curve1[i-15].y*Math.sin(degree), // PI/3
                   y: curve1[i-15].x*Math.sin(degree) - curve1[i-15].y*Math.cos(degree)
-                });
+              });
             }
         }
-        // console.log('curve:', curve2);
-        // console.log('curve length:', curve2.length);
 
+        // Translate the ellipse to fit enclose scatter plot well
         for(var k = 0; k < curve2.length; k++) {
-          // curve3.push({x: curve2[k].x, y: curve2[k].y})
-          degree = Math.PI/6;
-          curve3.push(
-            {
-              // x: curve2[k].x*Math.cos(degree) - curve2[k].y*Math.sin(degree), // PI/3
-              // y: curve2[k].x*Math.sin(degree) - curve2[k].y*Math.cos(degree)
-              x: curve2[k].x - 0.4, // PI/3
+          curve3.push({
+              x: curve2[k].x - 0.4,
               y: curve2[k].y + 0.2
-            });
+          });
 
         }
 
-        // Add Deviation to lines to create cluster plot
+        // Add Deviation to reference lines to create cluster plot
         for(var j = 0; j <= 300; j++){
           var pos1, pos2, devx1, devy1, devx2, devy2;
           pos1 = Math.round(Math.random()*50); // Can Round UP
