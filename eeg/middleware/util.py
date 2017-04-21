@@ -20,14 +20,18 @@ def initialize_LSL():
     # first resolve an EEG stream on the lab network
     print("looking for an EEG stream...")
 
-    streams1 = resolve_stream('type', 'Output')
+
+    streams1 = resolve_stream('type', 'PSD')
+    print("Found PSD...")
+
+    streams2 = resolve_stream('type', 'ThetaPSD')
+    print("Found Theta...")
+
+    streams3 = resolve_stream('type', 'Output')
     print("Found Ouput...")
 
-    streams2 = resolve_stream('type', 'Raw')
+    streams4 = resolve_stream('type', 'Raw')
     print("Found Raw...")
-
-    streams3 = resolve_stream('type', 'ThetaPSD')
-    print("Found Theta...")
 
 
 
@@ -41,6 +45,9 @@ def initialize_LSL():
     inlet3 = StreamInlet(streams3[0])
     print("Create inlet3...")
 
+    inlet4 = StreamInlet(streams4[0])
+    print("Create inlet4...")
+
 
 
     buff1, timestamp1 = inlet1.pull_sample()
@@ -52,6 +59,9 @@ def initialize_LSL():
     buff3, timestamp3 = inlet3.pull_sample()
     print("Create buff3...")
 
+    buff4, timestamp4 = inlet4.pull_sample()
+    print("Create buff4...")
 
-    return inlet1, buff1, inlet2, buff2, inlet3, buff3
+
+    return inlet1, buff1, inlet2, buff2, inlet3, buff3#, inlet4, buff4
     # return inlet1, buff1

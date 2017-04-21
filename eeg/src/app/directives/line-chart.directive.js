@@ -30,7 +30,7 @@ module.exports = function(StateFactory, SocketFactory, $http) {
                     return d3.format('d')(d);
                 },
                 axisLabelDistance: -10
-            },
+            }
         }
       }
 
@@ -60,16 +60,17 @@ module.exports = function(StateFactory, SocketFactory, $http) {
           //Line chart data should be sent as an array of series objects.
           return [
               {
-                  values: eeg,       //values - represents the array of {x,y} data points
-                  key: "EEG Signal", //key  - the name of the series.
-                  color: "#F2F2F3"  //color - optional: choose your own line color.
-              },
-              {
                   values: emotion,
                   key: "Emotional State",
                   color: "#FDAE3D",
                   strokeWidth: 3.5
+              },
+              {
+                  values: eeg,       //values - represents the array of {x,y} data points
+                  key: "EEG Signal", //key  - the name of the series.
+                  color: "#F2F2F3"  //color - optional: choose your own line color.
               }
+
           ];
       };
 
@@ -95,8 +96,8 @@ module.exports = function(StateFactory, SocketFactory, $http) {
               eeg.push({x: i/30, y: eeg_stream[i*4]})
 
           }
-          scope.data[0].values = eeg;
-          scope.data[1].values = emotion;
+          scope.data[1].values = eeg;
+          scope.data[0].values = emotion;
       };
 
 

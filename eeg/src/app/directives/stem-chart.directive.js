@@ -90,7 +90,8 @@ module.exports = function(SocketFactory) {
             if(message.status === "run") {
               for(var i = 0; i < 64; i++) {
                 if(i % 2 == 0)
-                  mag = Math.random();
+                  // mag = Math.random();
+                  mag = message.psd[i*4];
                 else
                   mag = 0;
 

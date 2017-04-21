@@ -10,7 +10,7 @@ module.exports = function() {
                type: 'multiChart',
                height: 500,
                margin : {
-                   top: 60, 
+                   top: 60,
                    right: 60,
                    bottom: 50,
                    left: 70
@@ -19,7 +19,7 @@ module.exports = function() {
                duration: 500,
                xAxis: {
                    tickFormat: function(d) {
-                          return d3.format(',.1f')(d);
+                          return d3.format(',d')(d); // .1f
                        },
                    axisLabel: 'X Variable',
                    margin: {
@@ -31,7 +31,7 @@ module.exports = function() {
                },
                yAxis1: {
                    tickFormat: function(d){
-                          return d3.format(',.1f')(d);
+                          return d3.format(',d')(d); //.1f
                      },
                      axisLabel: 'Y Variable',
                      margin: {
@@ -44,7 +44,7 @@ module.exports = function() {
                },
                yAxis2: {
                    tickFormat: function(d){
-                       return d3.format(',.1f')(d);
+                       return d3.format(',d')(d); // .1f
                    }
                }
            }
@@ -97,7 +97,7 @@ module.exports = function() {
           {
               type: "line",
               values: data[6],       //values - represents the array of {x,y} data points
-              key: "Classification Boundary", //key  - the name of the series.
+              key: "Boundary", //key  - the name of the series.
               color: "#1FCD4C",  //color - optional: choose your own line color.
               strokeWidth: 2,
               yAxis: 2
@@ -107,8 +107,8 @@ module.exports = function() {
               values: [
                     {x: 1.75, y: 5}, {x: 6, y: 9}, {x: 8, y: 5}, {x: 5,y: 1.5}
                       ],
-              key: "Classification Boundary",//"Classification Boundary", //key  - the name of the series.
-              color: "#FDAE3D",  //color - optional: choose your own line color.
+              key: "Boundary",//"Classification Boundary", //key  - the name of the series.
+              color: "#1FCD4C",  // "#FDAE3D" color - optional: choose your own line color.
               yAxis: 2
           }//,
 
