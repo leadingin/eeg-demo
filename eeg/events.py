@@ -90,6 +90,7 @@ def run_testscript(a):
 @socketio.on('script:run-live', namespace=namespace)
 def run_livescript(a):
     # print(a)
+    Raw = []
     # Get new sample
     PSD, timestamp1 = inlet1.pull_sample()
     Theta, timestamp2 = inlet2.pull_sample()
